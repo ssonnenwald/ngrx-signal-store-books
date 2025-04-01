@@ -81,6 +81,7 @@
     "Liskov",
     "MCSD",
     "mvvm",
+    "ngrx",
     "stackoverflow"
   ],
   "terminal.integrated.suggest.enabled": true,

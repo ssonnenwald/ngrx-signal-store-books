@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { delay, Observable, of } from 'rxjs';
+import { IBook } from '../../models/book';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DataService {
+  public constructor() {}
+
+  private books: IBook[] = [
+    {
+      id: 0,
+      name: 'Book 0',
+      pageCount: 0,
+    },
+    {
+      id: 1,
+      name: 'Book 1',
+      pageCount: 0,
+    },
+    {
+      id: 2,
+      name: 'Book 2',
+      pageCount: 0,
+    },
+    {
+      id: 3,
+      name: 'Book 22',
+      pageCount: 0,
+    },
+    {
+      id: 4,
+      name: 'Book 222',
+      pageCount: 0,
+    },
+  ];
+
+  public getAllBooks(): Observable<IBook[]> {
+    return of<IBook[]>(this.books).pipe(delay(2000));
+  }
+
+  public addBook(book: IBook): Observable<IBook> {
+    this.books.push(book);
+    return of(book).pipe(delay(2000));
+  }
+
+  public removeBook(id: number): Observable<number> {
+    const index = this.books.findIndex((x) => x.id === id);
+    if (index >= 0) {
+      this.books.splice(index, 1);
+    }
+
+    return of(id).pipe(delay(2000));
+  }
+}

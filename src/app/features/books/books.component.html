@@ -1,0 +1,25 @@
+@if (bookStore.isLoading()) {
+<div class="backdrop">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+}
+
+<h1 class="d-flex flex-row justify-content-center mb-4">
+  NgRx Signal Store - Books Example
+</h1>
+
+<mat-list>
+  <mat-divider></mat-divider>
+
+  @for (book of bookStore.entities(); track book.id) {
+  <mat-list-item>
+    <span class="text">{{ book.name }} with id:{{ book.id }}</span>
+    <button mat-raised-button class="btn-remove" (click)="removeBook(book)">
+      Remove
+    </button>
+  </mat-list-item>
+
+  <mat-divider></mat-divider>
+  }
+</mat-list>
+<button mat-raised-button (click)="addBook()">Add Book</button>
